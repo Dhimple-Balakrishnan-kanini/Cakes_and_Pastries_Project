@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <h2 style="font-family: 'Alegreya', serif;font-style:italic">Order Cake Online</h2>
+            <div class="navbar-header" style="margin-left:600px;margin-bottom:60px;font-family: 'Alegreya', serif;font-style:italic;color:black;">
+
+                @Html.ActionLink("Home", "Home", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cart", "viewcartitems", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("My Order", "ViewOrder", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SignUp", "Register", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Login", "Customer_Login", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Search", "Search", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+
+</body>
+</html>

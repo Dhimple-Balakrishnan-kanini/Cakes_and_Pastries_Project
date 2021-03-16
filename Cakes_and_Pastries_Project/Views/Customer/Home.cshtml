@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Cakes_and_Pastries_Project.Models.Cakes_and_Pastries_Details>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Home.cshtml";
+    
+
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <title>Search</title>
+    <style>
+        body {
+            background-image: url('../../CakeImages/bgimage.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    @using System.Web.Optimization
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript"></script>
+    @if(@ViewBag.msg!=null)
+    {
+    <p style="font-style:italic;font-weight:bold;color:blue;">Welcome @ViewBag.msg </p>
+    }
+   
+    @*<br /><br />
+    <label> Choose Type of Search</label>
+    <select id="searchBy" class="form-control">
+        <option value="Cake_and_Pastries_Type"> Cake and Pastries Type</option>
+    </select>
+    <br />
+    <label> Enter Key</label>
+    <div style="display:flex;">
+        <input class="form-control" id="search" />
+        <input class="btn btn-primary" type="submit" id="SearchBtn" value="Search" />
+    </div>
+    <br /><br />*@
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_and_Pastries_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_Type_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cake_Description)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(item.Cake_Image)" width="100" height="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cake_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cake_and_Pastries_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cake_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cake_Type_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cake_Description)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Add to Cart", "Add_To_Cart", new { cakeid = item.Cake_ID })*@
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Add_To_Cart", "Customer",new { cakeid = item.Cake_ID })'"name="button">Add to Cart</button>
+
+                </td>
+                <td>
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("FeedBack", "Customer",new { cakeid = item.Cake_ID })';return true;">Add FeedBack</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("ViewFeed", "Customer",new { cakeid = item.Cake_ID })';return true;">View FeedBack</button>
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+    <p> @ViewBag.error </p>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#search").keyup(function () {
+                var SearchBy = $("#searchBy").val();
+                var SearchValue = $("#search").val();
+                var SetData = $("#DataSearching");
+                SetData.html("");
+
+                $.ajax({
+                    type: "post",
+                    url: "/Customer/GetSearchData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                    contentType: "html",
+                    success: function (result) {
+                        if (result.length == 0) {
+                            SetData.append('<tr><td>No Results Found</td></tr>');
+                        }
+                        else {
+                            var Data = '';
+                            $.each(result, function (index, value) {
+                                Data += '<tr>';
+                                Data += '<td>' + value.Cake_Image + '</td>';
+                                Data += '<td>' + value.Cake_ID + '</td>';
+                                Data += '<td>' + value.Cake_and_Pastries_Type + '</td>';
+                                Data += '<td>' + value.Cake_Name + '</td>';
+                                Data += '<td>' + value.Price + '</td>';
+                                Data += '<td>' + value.Cake_Type_ID + '</td>';
+                                Data += '<td>' + value.Cake_Description + '</td>';
+                                Data += '</tr>';
+
+                            });
+                            SetData.append(Data);
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

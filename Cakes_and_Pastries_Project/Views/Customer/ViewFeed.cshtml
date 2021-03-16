@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Cakes_and_Pastries_Project.Models.FeedBack>
+
+@{
+    ViewBag.Title = "ViewFeed";
+    Layout = "~/Views/Shared/_Customrlayout.cshtml";
+}
+
+<head>
+    <style>
+        body {
+            background-image: url('../../CakeImages/bgimage.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FeedBack_No)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Cake_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeedBack_No)
+        </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.Cake_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

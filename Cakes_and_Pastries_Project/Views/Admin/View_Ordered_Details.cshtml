@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Cakes_and_Pastries_Project.Models.Ordered_Cake_Details>
+
+@{
+    ViewBag.Title = "View_Ordered_Details";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<head>
+    <style>
+        body {
+            background-image: url('../../CakeImages/bgimage.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cake_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cake_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_of_Order)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cake_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cake_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status_of_Order)
+        </td>
+        <td>
+
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Admin",new { orderid = item.Order_ID })'">Edit</button>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Redirect_to_DeliveryBoy", "Admin",new { orderid = item.Order_ID })'">Submit</button>
+
+
+        </td>
+    </tr>
+}
+
+</table>

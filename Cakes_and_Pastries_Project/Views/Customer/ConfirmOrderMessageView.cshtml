@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmOrderMessageView";
+    Layout = "~/Views/Shared/_Customrlayout.cshtml";
+}
+
+<h2>ConfirmOrderMessageView</h2>
+<h1>Thank you for Ordering</h1>
+
+<button class="btn btn-primary" onclick="location.href='@Url.Action("ViewOrderedDetails", "Customer")';return false;">View Order</button>
+

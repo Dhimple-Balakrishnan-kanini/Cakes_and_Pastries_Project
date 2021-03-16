@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Cakes_and_Pastries_Project.Models.Order_delivery_Details>
+
+@{
+    ViewBag.Title = "View_delivery_Details";
+    Layout = "~/Views/Shared/_DeliveryEmployee.cshtml";
+}
+
+<head>
+    <style>
+        body {
+            background-image: url('../../CakeImages/bgimage.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery_Employee_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Of_Delivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_Of_Delivery)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Delivery_Employee_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Delivery_Address)
+        </td>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.Date_Of_Delivery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_Of_Delivery)
+        </td>
+        <td>
+            
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "DeliveryEmployee",new { orderid = item.Order_ID })'">Update Status</button>
+
+        </td>
+    </tr>
+}
+
+</table>
+<a href="#">content</a>
